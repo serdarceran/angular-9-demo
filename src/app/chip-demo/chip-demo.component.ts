@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Subject } from "rxjs";
 
 @Component({
-  selector: 'app-chip-demo',
-  templateUrl: './chip-demo.component.html',
-  styleUrls: ['./chip-demo.component.css']
+  selector: "app-chip-demo",
+  templateUrl: "./chip-demo.component.html",
+  styleUrls: ["./chip-demo.component.css"]
 })
 export class ChipDemoComponent implements OnInit {
+  values = [1, 2];
+  constructor() {}
 
-  values = ['1', '2'];
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  numberAdd(event: number) {
+    console.log(">>>>", event);
+    this.values.push(event);
   }
-
 }
