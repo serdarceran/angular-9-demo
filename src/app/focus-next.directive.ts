@@ -1,12 +1,22 @@
-import { Directive, ElementRef, HostListener, Input } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit
+} from "@angular/core";
 
 @Directive({
   selector: "input"
 })
-export class FocusNextDirective {
+export class FocusNextDirective implements OnInit {
+  constructor(private elementRef: ElementRef) {}
+
   @Input() focusNextId: string;
 
-  constructor(private elementRef: ElementRef) {}
+  ngOnInit() {
+    console.log(this.focusNextId);
+  }
 
   @HostListener("keydown.enter", ["$event"]) onKeydownHandler(
     event: KeyboardEvent
