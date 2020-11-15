@@ -4,7 +4,7 @@ import { Directive, ElementRef, HostListener, Input } from "@angular/core";
   selector: "input"
 })
 export class FocusNextDirective {
-   @Input() focusNextId: string;
+  @Input() focusNextId: string;
 
   constructor(private elementRef: ElementRef) {}
 
@@ -12,20 +12,23 @@ export class FocusNextDirective {
     event: KeyboardEvent
   ) {
     const inputEl = this.elementRef.nativeElement as HTMLInputElement;
+    console.log(this.focusNextId);
     if (this.focusNextId) {
-      const nextEl = inputEl.ownerDocument.querySelector(`#${this.focusNextId}`) as HTMLElement;
+      const nextEl = inputEl.ownerDocument.querySelector(
+        `#${this.focusNextId}`
+      ) as HTMLElement;
       nextEl.focus();
     } else {
       let focusEl: HTMLElement;
       let parentEl = inputEl.parentElement;
-      while(parentEl && !focusEl) {
-        const allElsDic = parentEl.querySelectorAll('input, select');
+      while (parentEl && !focusEl) {
+        const allElsDic = parentEl.querySelectorAll("input, select");
         const allEls = Object.values(allElsDic);
         const inputElIndex = allEls.indexOf(inputEl);
-        if (inputElIndex+1 === allEls.length) {
+        if (inputElIndex + 1 === allEls.length) {
           parentEl = parentEl.parentElement;
         } else {
-          focusEl = allEls[inputElIndex+1] as HTMLElement;
+          focusEl = allEls[inputElIndex + 1] as HTMLElement;
         }
       }
       if (focusEl) {
