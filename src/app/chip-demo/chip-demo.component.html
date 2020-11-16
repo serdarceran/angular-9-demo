@@ -2,4 +2,10 @@
 	<p-chips appNumberFormat 
     (numberAdded)="numberAdd($event)"
    [ngModel]="values" ></p-chips>
+
+   <p-chips  appNumberFormat [ngModel]="values" (numberAdded)="numberAdd($event)">
+      <ng-template let-item pTemplate="item">
+          {{item | toLocalNumberString}}
+      </ng-template>
+  </p-chips>
 </div>
