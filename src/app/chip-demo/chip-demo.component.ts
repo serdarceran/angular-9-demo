@@ -13,7 +13,9 @@ export class ChipDemoComponent implements OnInit {
   ngOnInit() {}
 
   numberAdd(event: number) {
-    console.log(">>>>", event);
     this.values.push(event);
+  }
+  numberAddFailed(event: string) {
+    console.error(`the item '${event}' cannot be added as number`);
   }
 }

@@ -1,11 +1,10 @@
 <div class="p-fluid">
-	<p-chips appNumberFormat 
-    (numberAdded)="numberAdd($event)"
-   [ngModel]="values" ></p-chips>
+	<p-chips appNumberFormat (numberAdded)="numberAdd($event)" [ngModel]="values"></p-chips>
 
-   <p-chips  appNumberFormat [ngModel]="values" (numberAdded)="numberAdd($event)">
-      <ng-template let-item pTemplate="item">
-          {{item | toLocalNumberString}}
-      </ng-template>
-  </p-chips>
+	<p-chips appNumberFormat [ngModel]="values" (numberAdded)="numberAdd($event)"
+		(numberAddFailed)="numberAddFailed($event)">
+		<ng-template let-item pTemplate="item">
+			{{item | toLocalNumberString}}
+		</ng-template>
+	</p-chips>
 </div>

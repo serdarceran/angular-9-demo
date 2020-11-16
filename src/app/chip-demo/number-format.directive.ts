@@ -17,6 +17,8 @@ export class NumberFormatDirective implements OnInit {
   @ContentChild(Chips) myChips: Chips;
   @Output()
   numberAdded = new EventEmitter<number>();
+  @Output()
+  numberAddFailed = new EventEmitter<string>();
 
   constructor() {}
   ngOnInit(): void {}
@@ -29,7 +31,7 @@ export class NumberFormatDirective implements OnInit {
       this.numberAdded.emit(vv);
     } else {
       this.myChips.value.pop();
-      console.error(`wrong format`);
+      this.numberAddFailed.emit(event.value);
     }
   }
 }
