@@ -11,6 +11,7 @@ import { ChipsModule } from "primeng/chips";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ButtonModule } from "primeng/button";
 import { NumberFormatDirective } from './chip-demo/number-format.directive';
+import { ToLocalNumberStringPipe } from './chip-demo/to-local-number-string.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { NumberFormatDirective } from './chip-demo/number-format.directive';
     FocusNextDirective,
     ApplyPanelComponent,
     ChipDemoComponent,
-    NumberFormatDirective
+    NumberFormatDirective,
+    ToLocalNumberStringPipe
   ],
   bootstrap: [AppComponent]
 })

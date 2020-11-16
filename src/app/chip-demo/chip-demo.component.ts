@@ -7,7 +7,7 @@ import { Subject } from "rxjs";
   styleUrls: ["./chip-demo.component.css"]
 })
 export class ChipDemoComponent implements OnInit {
-  values = [1, 2];
+  values = [1, 2, 3.4];
   constructor() {}
 
   ngOnInit() {}
