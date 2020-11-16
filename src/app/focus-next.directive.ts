@@ -45,7 +45,9 @@ export class FocusNextDirective implements OnInit {
       let focusEl: HTMLElement;
       let parentEl = inputEl.parentElement;
       while (parentEl && !focusEl) {
-        const allElsDic = parentEl.querySelectorAll("input, select");
+        const allElsDic = parentEl.querySelectorAll(
+          "input:not([disabled]):not([readonly]):not([hidden]), select:not([disabled]):not([readonly]):not([hidden])"
+        );
         const allEls = Object.values(allElsDic);
         const inputElIndex = allEls.indexOf(inputEl);
         if (inputElIndex + 1 === allEls.length) {
