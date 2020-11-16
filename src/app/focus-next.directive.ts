@@ -26,9 +26,21 @@ export class FocusNextDirective implements OnInit {
     if (this.focusNextId) {
       const nextEl = inputEl.ownerDocument.querySelector(
         `#${this.focusNextId}`
-      ) as HTMLElement;
-      nextEl.focus();
-      console.log(`Focusing to `, nextEl);
+      );
+      let elToFocus: HTMLElement;
+      if (
+        nextEl instanceof HTMLInputElement ||
+        nextEl instanceof HTMLButtonElement
+      ) {
+        elToFocus = nextEl;
+      } else {
+        elToFocus = nextEl.querySelector("input, button") as HTMLElement;
+      }
+      if (elToFocus) {
+        elToFocus.focus();
+      } else {
+        console.warn(`No element to focus for ${this.focusNextId}`);
+      }
     } else {
       let focusEl: HTMLElement;
       let parentEl = inputEl.parentElement;
