@@ -1,4 +1,6 @@
 import {
+  AfterViewInit,
+  ContentChild,
   Directive,
   ElementRef,
   EventEmitter,
@@ -11,6 +13,7 @@ import {
 } from "@angular/core";
 
 import { NgModel } from "@angular/forms";
+import { InputNumber } from "primeng/inputnumber";
 
 export interface NumberChangedEvent {
   prevValue: number;
@@ -22,13 +25,14 @@ export interface NumberChangedEvent {
   providers: [NgModel]
 })
 export class LocalNumberDirective implements OnInit, OnDestroy {
+  @ContentChild(InputNumber) inputNumberComp: InputNumber;
   @Output() numberValueChanged = new EventEmitter<NumberChangedEvent>();
+  @Input("ngModel") ngModelValue: string;
   private nativeInput: HTMLInputElement;
   private blurEventFunc: () => void;
   private focusEventFunc: () => void;
   private prevValue: number;
-  private preventUpdate = false;
-  private preventBlurEvent = false;
+  private prevValueStr: string;
 
   constructor(
     private elementRef: ElementRef,
@@ -37,12 +41,9 @@ export class LocalNumberDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.prevValueStr = this.ngModelValue;
     this.nativeInput = this.getNativeInput();
-
     this.blurEventFunc = () => {
-      if (this.preventBlurEvent) {
-        return;
-      }
       this.setBackgroundColor("white");
     };
     this.focusEventFunc = () => {
@@ -60,35 +61,25 @@ export class LocalNumberDirective implements OnInit, OnDestroy {
   @HostListener("keydown.enter", ["$event"]) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    this.preventBlurEvent = true;
-    this.nativeInput.blur();
-    this.nativeInput.focus();
-    this.preventBlurEvent = false;
+    this.inputNumberComp.onInputBlur(event);
   }
 
   @HostListener("ngModelChange", ["$event"])
   onModelChange(event) {
-    if (this.preventUpdate) {
-      return;
-    }
     if (this.prevValue.toFixed(5) !== event.toFixed(5)) {
       this.numberValueChanged.emit({ prevValue: this.prevValue, value: event });
       this.setBackgroundColor("lightskyblue");
     }
     this.prevValue = event;
+    this.prevValueStr = this.nativeInput.value;
   }
 
   @HostListener("keydown.escape", ["$event"])
   onCancel(event) {
     event.preventDefault();
     event.stopPropagation();
-    const previousValue = this.ngModel.value;
-    this.preventUpdate = true;
+    this.nativeInput.value = this.prevValueStr;
     this.nativeInput.blur();
-    setTimeout(() => {
-      this.preventUpdate = false;
-      this.ngModel.reset(previousValue);
-    }, 100);
   }
 
   private getNativeInput() {
