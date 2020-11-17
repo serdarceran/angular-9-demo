@@ -1,10 +1,11 @@
 <p-inputNumber locale="de" class="ui-g-9" [(ngModel)]="fuel" mode="decimal" [minFractionDigits]="2"
 	(numberValueChanged)="fuelChanged($event, fuel)">
 </p-inputNumber>
+Saved: {{fuel}}
 <br/>
 <p-inputNumber locale="de" class="ui-g-9" [(ngModel)]="fuel2" mode="decimal" [minFractionDigits]="2"
 	(numberValueChanged)="fuelChanged($event, fuel2)">
 </p-inputNumber>
-
+Saved: {{fuel2}}
 <br/>
 <button id="applybutton">Apply</button>
