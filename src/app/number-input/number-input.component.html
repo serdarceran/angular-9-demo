@@ -1,0 +1,8 @@
+<p-inputNumber *localVar="let theLocale" 
+  [(locale)]="theLocale" 
+  class="ui-g-9"
+  [(ngModel)]="fuel" 
+  mode="decimal" 
+  [minFractionDigits]="2" 
+  (numberValueChanged)="fuelChanged($event, fuel)">
+</p-inputNumber>
