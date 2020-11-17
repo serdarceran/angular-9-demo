@@ -27,7 +27,6 @@ export interface NumberChangedEvent {
 export class LocalNumberDirective implements OnInit, OnDestroy {
   @ContentChild(InputNumber) inputNumberComp: InputNumber;
   @Output() numberValueChanged = new EventEmitter<NumberChangedEvent>();
-  @Input("ngModel") ngModelValue: string;
   private nativeInput: HTMLInputElement;
   private blurEventFunc: () => void;
   private focusEventFunc: () => void;
@@ -41,13 +40,13 @@ export class LocalNumberDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.prevValueStr = this.ngModelValue;
     this.nativeInput = this.getNativeInput();
     this.blurEventFunc = () => {
       this.setBackgroundColor("white");
     };
     this.focusEventFunc = () => {
       this.prevValue = this.ngModel.value;
+      this.prevValueStr = this.nativeInput.value;
     };
     this.nativeInput.addEventListener("blur", this.blurEventFunc);
     this.nativeInput.addEventListener("focus", this.focusEventFunc);
