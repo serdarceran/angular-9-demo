@@ -22,8 +22,6 @@ export interface NumberChangedEvent {
   providers: [NgModel]
 })
 export class LocalNumberDirective implements OnInit, OnDestroy {
-  @Input() locale = "";
-  @Output() localeChange = new EventEmitter<string>();
   @Output() numberValueChanged = new EventEmitter<NumberChangedEvent>();
   private nativeInput: HTMLInputElement;
   private blurEventFunc: () => void;
@@ -39,7 +37,6 @@ export class LocalNumberDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.setupLanguage();
     this.nativeInput = this.getNativeInput();
 
     this.blurEventFunc = () => {
@@ -92,10 +89,6 @@ export class LocalNumberDirective implements OnInit, OnDestroy {
       this.preventUpdate = false;
       this.ngModel.reset(previousValue);
     }, 100);
-  }
-
-  private setupLanguage() {
-    this.localeChange.emit("de");
   }
 
   private getNativeInput() {

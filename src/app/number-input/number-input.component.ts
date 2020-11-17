@@ -8,6 +8,7 @@ import { NumberChangedEvent } from "./local-number.directive";
 })
 export class NumberInputComponent implements OnInit {
   fuel = 5;
+  fuel2 = 4.6;
   constructor() {}
 
   ngOnInit() {}
