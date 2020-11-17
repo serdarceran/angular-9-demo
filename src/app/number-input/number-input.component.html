@@ -1,11 +1,26 @@
-<p-inputNumber locale="de" class="ui-g-9" [(ngModel)]="fuel" mode="decimal" [minFractionDigits]="2"
-	(numberValueChanged)="fuelChanged($event, fuel)">
+<p-inputNumber locale="{{selectedLang.value}}" class="ui-g-9" [(ngModel)]="fuel" mode="decimal" [minFractionDigits]="2"
+	[maxFractionDigits]="4" (numberValueChanged)="fuelChanged($event, fuel)">
 </p-inputNumber>
 Saved: {{fuel}}
 <br/>
-<p-inputNumber locale="de" class="ui-g-9" [(ngModel)]="fuel2" mode="decimal" [minFractionDigits]="2"
-	(numberValueChanged)="fuelChanged($event, fuel2)">
+<p-inputNumber locale="{{selectedLang.value}}" class="ui-g-9" [(ngModel)]="fuel2" mode="decimal" [minFractionDigits]="2"
+	[maxFractionDigits]="4" (numberValueChanged)="fuelChanged($event, fuel2)">
 </p-inputNumber>
 Saved: {{fuel2}}
 <br/>
-<button id="applybutton">Apply</button>
+<button [disabled]="!enableApplyButton"  (click)="applyit()" id="applybutton">Apply</button>
+
+<br/>
+
+
+
+<p>Language: <span>
+  <select [(ngModel)]="selectedLang">
+  <option *ngFor="let lang of langs" [ngValue]="lang">{{lang.name}}</option>
+</select>
+</span></p>
+
+
+
+<br/>
+<p>{{message}}</p>
