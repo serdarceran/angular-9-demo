@@ -72,10 +72,14 @@ export class NumberInput2Directive {
   onModelChange(event) {
     if (event == null) {
       this.setBackgroundColor("red");
+      this.prevValue = event;
       this.numberValueChanged.emit({ prevValue: this.prevValue, value: event });
       return;
     }
-    if (this.prevValue && this.prevValue.toFixed(5) !== event.toFixed(5)) {
+    if (
+      this.prevValue == null ||
+      this.prevValue.toFixed(5) !== event.toFixed(5)
+    ) {
       this.numberValueChanged.emit({ prevValue: this.prevValue, value: event });
     }
     this.setBackgroundColor("lightskyblue");
