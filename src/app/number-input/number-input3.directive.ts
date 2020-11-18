@@ -75,7 +75,7 @@ export class NumberInput3Directive {
 
   @HostListener("ngModelChange", ["$event"])
   onModelChange(event) {
-    if (this.resetIfModelNull()) {
+    if (this.resetIfModelNull(event)) {
       return;
     }
 
@@ -90,7 +90,7 @@ export class NumberInput3Directive {
     this.prevValueStr = this.nativeInput.value;
   }
 
-  private resetIfModelNull(modelValue?: number) {
+  private resetIfModelNull(modelValue: number) {
     if (modelValue == null) {
       const preV = this.prevValueStr;
       setTimeout(() => {
