@@ -28,7 +28,8 @@ export class NumberInputComponent implements OnInit {
   ngOnInit() {}
 
   fuelChanged(event: NumberChangedEvent, changedFuel) {
-    this.enableApplyButton = event.value != null;
+    console.log("fuel:", this.fuel, "; fuel2: ", this.fuel2);
+    
   }
 
   applyit() {

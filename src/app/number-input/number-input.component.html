@@ -16,7 +16,7 @@ Saved: {{fuel}}
 </p-inputNumber>
 Saved: {{fuel2}}
 <br/>
-<button style="margin-top:5px" [disabled]="!enableApplyButton"  (click)="applyit()" id="applybutton">Apply</button>
+<button style="margin-top:5px" [disabled]="!(fuel != null && fuel2 != null)"  (click)="applyit()" id="applybutton">Apply</button>
 
 <br/>
 
