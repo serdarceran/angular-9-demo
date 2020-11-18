@@ -64,7 +64,7 @@ export class NumberInput2Directive {
   @HostListener("keydown.enter", ["$event"]) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    if (this.ngModel.value) {
+    if (this.ngModel.value) { // Value may not be changed which will not trigger onModelChange.
       this.setBackgroundColor("lightskyblue");
     } else {
       this.setBackgroundColor("lightcoral");
