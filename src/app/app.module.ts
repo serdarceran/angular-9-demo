@@ -17,6 +17,7 @@ import { NumberInputComponent } from "./number-input/number-input.component";
 import { LocalNumberDirective } from "./number-input/local-number.directive";
 import { NumberInput2Directive } from './number-input/number-input2.directive';
 import { NumberInput3Directive } from './number-input/number-input3.directive';
+import { NumberInput4Directive } from './number-input/number-input4.directive';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { NumberInput3Directive } from './number-input/number-input3.directive';
     NumberInputComponent,
     LocalNumberDirective,
     NumberInput2Directive,
-    NumberInput3Directive
+    NumberInput3Directive,
+    NumberInput4Directive
   ],
   bootstrap: [AppComponent]
 })
