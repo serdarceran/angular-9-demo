@@ -22,6 +22,7 @@ export class NumberInput2Directive {
   private nativeInput: HTMLInputElement;
   private blurEventFunc: () => void;
   private focusEventFunc: () => void;
+  private keydownEventFunc: (event: KeyboardEventInit) => void;
   private prevValue: number;
   private prevValueStr: string;
 
@@ -43,13 +44,14 @@ export class NumberInput2Directive {
         this.prevValueStr = this.nativeInput.value;
       }
     };
-    this.nativeInput.addEventListener("blur", this.blurEventFunc);
-    this.nativeInput.addEventListener("focus", this.focusEventFunc);
-    this.nativeInput.addEventListener("keydown", event => {
+    this.keydownEventFunc = (event) => {
       if (event.key !== "Enter") {
         this.setBackgroundColor("white");
       }
-    });
+    };
+    this.nativeInput.addEventListener("blur", this.blurEventFunc);
+    this.nativeInput.addEventListener("focus", this.focusEventFunc);
+    this.nativeInput.addEventListener("keydown", this.keydownEventFunc);
   }
 
   ngAfterViewInit(): void {
@@ -59,6 +61,7 @@ export class NumberInput2Directive {
   ngOnDestroy(): void {
     this.nativeInput.removeEventListener("blur", this.blurEventFunc);
     this.nativeInput.removeEventListener("focus", this.focusEventFunc);
+    this.nativeInput.removeEventListener("keydown", this.keydownEventFunc);
   }
 
   @HostListener("keydown.enter", ["$event"]) onKeydownHandler(
@@ -66,7 +69,7 @@ export class NumberInput2Directive {
   ) {
     if (this.ngModel.value) { // Value may not be changed which will not trigger onModelChange.
       this.setBackgroundColor("lightskyblue");
-    } else {
+    } else { // If value was already null, then onModelChange will not be triggered.
       this.setBackgroundColor("lightcoral");
     }
     this.inputNumberComp.onInputBlur(event);
