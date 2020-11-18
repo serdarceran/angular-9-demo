@@ -16,6 +16,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { NumberInputComponent } from "./number-input/number-input.component";
 import { LocalNumberDirective } from "./number-input/local-number.directive";
 import { NumberInput2Directive } from './number-input/number-input2.directive';
+import { NumberInput3Directive } from './number-input/number-input3.directive';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { NumberInput2Directive } from './number-input/number-input2.directive';
     ToLocalNumberStringPipe,
     NumberInputComponent,
     LocalNumberDirective,
-    NumberInput2Directive
+    NumberInput2Directive,
+    NumberInput3Directive
   ],
   bootstrap: [AppComponent]
 })
