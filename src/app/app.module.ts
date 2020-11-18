@@ -15,6 +15,7 @@ import { ToLocalNumberStringPipe } from "./chip-demo/to-local-number-string.pipe
 import { InputNumberModule } from "primeng/inputnumber";
 import { NumberInputComponent } from "./number-input/number-input.component";
 import { LocalNumberDirective } from "./number-input/local-number.directive";
+import { NumberInput2Directive } from './number-input/number-input2.directive';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { LocalNumberDirective } from "./number-input/local-number.directive";
     NumberFormatDirective,
     ToLocalNumberStringPipe,
     NumberInputComponent,
-    LocalNumberDirective
+    LocalNumberDirective,
+    NumberInput2Directive
   ],
   bootstrap: [AppComponent]
 })

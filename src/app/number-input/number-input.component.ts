@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { NumberChangedEvent } from "./local-number.directive";
 
 @Component({
@@ -10,29 +10,30 @@ export class NumberInputComponent implements OnInit {
   fuel = 5;
   fuel2 = 4.6;
   enableApplyButton = false;
-  message = '';
+  message = "";
   langs = [
     {
-      name: 'German',
-      value: 'de',
+      name: "German",
+      value: "de"
     },
     {
-      name: 'English',
-      value:'en',
+      name: "English",
+      value: "en"
     }
   ];
   selectedLang = this.langs[0];
 
   constructor() {}
+  
 
   ngOnInit() {}
 
   fuelChanged(event: NumberChangedEvent, changedFuel) {
-    this.enableApplyButton = true;
+    console.log("fuel changed: ", event.value);
   }
 
   applyit() {
     this.message = `${this.fuel} and ${this.fuel2} is sent to Backend`;
     this.enableApplyButton = false;
   }
- }
+}
