@@ -39,7 +39,9 @@ export class NumberInput2Directive {
     };
     this.focusEventFunc = () => {
       this.prevValue = this.ngModel.value;
-      this.prevValueStr = this.nativeInput.value;
+      if (this.nativeInput.value) {
+        this.prevValueStr = this.nativeInput.value;
+      }
     };
     this.nativeInput.addEventListener("blur", this.blurEventFunc);
     this.nativeInput.addEventListener("focus", this.focusEventFunc);
