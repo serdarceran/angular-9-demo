@@ -71,7 +71,7 @@ export class NumberInput2Directive {
   @HostListener("ngModelChange", ["$event"])
   onModelChange(event) {
     if (event == null) {
-      this.setBackgroundColor("red");
+      this.setBackgroundColor("lightcoral");
       this.prevValue = event;
       this.numberValueChanged.emit({ prevValue: this.prevValue, value: event });
       return;
@@ -100,7 +100,7 @@ export class NumberInput2Directive {
     return inputEl.querySelector("input");
   }
 
-  private setBackgroundColor(color: "lightskyblue" | "white" | "red") {
+  private setBackgroundColor(color: "lightskyblue" | "white" | "lightcoral") {
     this.renderer.setStyle(this.nativeInput, "background-color", color);
   }
 }
