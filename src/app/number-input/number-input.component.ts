@@ -10,15 +10,15 @@ export class NumberInputComponent implements OnInit {
   fuel = 5;
   fuel2 = 4.6;
   enableApplyButton = false;
-  message = '';
+  message = "";
   langs = [
     {
-      name: 'German',
-      value: 'de',
+      name: "German",
+      value: "de"
     },
     {
-      name: 'English',
-      value:'en',
+      name: "English",
+      value: "en"
     }
   ];
   selectedLang = this.langs[0];
@@ -28,11 +28,11 @@ export class NumberInputComponent implements OnInit {
   ngOnInit() {}
 
   fuelChanged(event: NumberChangedEvent, changedFuel) {
-    this.enableApplyButton = true;
+    this.enableApplyButton = event.value != null;
   }
 
   applyit() {
     this.message = `${this.fuel} and ${this.fuel2} is sent to Backend`;
     this.enableApplyButton = false;
   }
- }
+}

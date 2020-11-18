@@ -18,7 +18,7 @@ export interface NumberChangedEvent {
 }
 
 @Directive({
-  selector: "[ngModel]p-inputNumber",
+  selector: "[ngModel][appNumberInput]",
   providers: [NgModel]
 })
 export class LocalNumberDirective implements OnInit, OnDestroy {
