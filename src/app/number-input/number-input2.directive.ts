@@ -66,6 +66,8 @@ export class NumberInput2Directive {
   ) {
     if (this.ngModel.value) {
       this.setBackgroundColor("lightskyblue");
+    } else {
+      this.setBackgroundColor("lightcoral");
     }
     this.inputNumberComp.onInputBlur(event);
   }
